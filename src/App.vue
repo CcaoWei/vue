@@ -3,6 +3,7 @@
     <!-- header -->
     <mt-header fixed title="电影列表"></mt-header>
     <!-- 路由 -->
+	<router-view></router-view>
     <!-- 底部tabbar -->
     <nav class="mui-bar mui-bar-tab">
 			<router-link  class="mui-tab-item" to="/home">
@@ -24,7 +25,6 @@
 				<span class="mui-tab-label">搜索</span>
 			</router-link>
 		</nav>
-    <h1>这是 App 组件</h1>
     
   </div>
 </template>
