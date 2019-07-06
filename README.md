@@ -8,3 +8,13 @@
 
 
 # vscode 有个工具可以 是可视化提交
+
+# 用 mintui 写header
+
+# mui 写 tabbar   图标 注意：  拷贝 图标css ttf字体库
+
+#  用router-view展示中间区域 路由匹配
+
+
+# tabbar 为路由 ---- 设置选中高亮 
+
