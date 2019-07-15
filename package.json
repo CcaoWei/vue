@@ -1,7 +1,7 @@
 {
   "name": "01.webpack-study",
   "version": "1.0.0",
-  "description": "",
+  "description": "# 命令行 上传  # git add .   git commit -m\"\"  git push",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -32,9 +32,21 @@
     "webpack-dev-server": "^2.9.3"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "bootstrap": "^3.3.7",
     "mint-ui": "^2.2.13",
+    "qs.js": "^0.1.12",
     "vue": "^2.5.2",
+    "vue-axios": "^2.1.4",
+    "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CcaoWei/vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CcaoWei/vue/issues"
+  },
+  "homepage": "https://github.com/CcaoWei/vue#readme"
 }
