@@ -1,6 +1,6 @@
 <template>
-    <div class="detail">
-        <p class="detail-title">{{movieDetail.title}}</p>
+    <div class="detail" v-if="movieDetail">
+        <p class="detail-title">{{movieDetail.name}}</p>
         <div class="detail-top">
             <img :src="movieDetail.images.medium" class="detail-top-left">
             <div class="detail-top-right">
@@ -15,13 +15,21 @@
                     <p class="tag-title">主演：</p>
                     <ul class="detail-tags">
                         <li class="detail-tag" v-for="cast in movieDetail.casts" :key="cast.name">{{cast.name}} </li>
-                    </ul>
+                    </ul>90
                 </div>
             </div>
             
         </div>
         <div class="detail-summary"><p class="summary-title">介绍：{{movieDetail.summary}}</p></div>
+
+        <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+            <div class="ball" v-show="ballFlag" ref="ball"></div>
+        </transition>
         
+        <div class="shop-content">
+            <p>购买数量：</p> <number-box @getCount="getSelectedCount"></number-box>
+        </div>
+        <div class="addShopCar" @click="addShopCart">加入购物车</div>
         <div class="detail-evaluation">评价：</div>
         <ul>
              <li class="detail-evaluation-content" v-for="reviews in movieDetail.popular_reviews" :key="reviews.summary">{{reviews.summary}}</li>
@@ -109,13 +117,46 @@ div,p,img,ul,li{
 .detail-evaluation-content:last-child{
     border-bottom: 0;
 }
+.shop-content{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+.ball{
+    height: 15px;
+    width: 15px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 99;
+    top: 466px;
+    left: 129px;
+}
+.addShopCar{
+    height: 30px;
+    width: 111px;
+    /* padding: 10px; */
+    line-height: 30px;
+    font-size: 16px;
+    color: #fff;
+    background:  #d66666;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 15px;
+}
 </style>
 <script>
+// 导入数字选择框
+import numberBox from "../shop/numberBox.vue"
 export default {
     // https://api.douban.com/v2/movie/subject/
+    // "https://douban.uieee.com/v2/movie/subject/
     data(){
         return{
             movieDetail:null,
+            ballFlag:false,//控制小球
+            selectedCount:1,
         };
     },
     created(){
@@ -130,7 +171,36 @@ export default {
                      alert("获取详情失败")
                  }
             });   
+        },
+        addShopCart(){
+            this.ballFlag = !this.ballFlag;
+        },
+        beforeEnter(el){
+            el.style.transform = "translate(0,0)";
+        },
+        enter(el,done){
+            //用到 object.getBoundingClientRect();  获取坐标
+            const ballPositon =  this.$refs.ball.getBoundingClientRect();
+            const badgePositon = document.getElementById("badge").getBoundingClientRect();
+            const xDist = badgePositon.left - ballPositon.left;
+            const yDist = badgePositon.top - ballPositon.top;
+            console.log(ballPositon)
+            console.log(badgePositon)
+             el.offsetWidth;
+             el.style.transform = "translate("+ xDist +"px,"+ yDist+"px)";
+             el.style.transition = "all 0.5s cubic-bezier(.4,-0.3,1,.68)";
+             done();
+        },
+        afterEnter(el){
+            this.ballFlag = !this.ballFlag;
+        },
+        getSelectedCount(count){//用来接收子组件传过来的值得
+            this.selectedCount = count;
+            console.log(this.selectedCount)
         }
+    },
+    components:{
+        numberBox
     }
 }
 </script>
