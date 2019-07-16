@@ -25,7 +25,7 @@
         <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
             <div class="ball" v-show="ballFlag" ref="ball"></div>
         </transition>
-        
+        <div class="moive-price">价格: <span>￥{{movieDetail.wish_count}}</span> </div>
         <div class="shop-content">
             <p>购买数量：</p> <number-box @getCount="getSelectedCount"></number-box>
         </div>
@@ -145,6 +145,14 @@ div,p,img,ul,li{
     border-radius: 5px;
     margin-top: 15px;
 }
+.moive-price{
+    margin: 8px 0;
+    color: darkgray;
+    font-size: 14px;
+}
+.moive-price span{
+    color: red;
+}
 </style>
 <script>
 // 导入数字选择框
@@ -166,6 +174,7 @@ export default {
         getMovieDetail(){
             this.$http.jsonp("https://douban.uieee.com/v2/movie/subject/"+this.$route.params.id).then(result =>{
                  if(result.status == 200){
+                     console.log(result)
                      this.movieDetail = result.body;
                  }else{
                      alert("获取详情失败")
@@ -173,7 +182,12 @@ export default {
             });   
         },
         addShopCart(){
-            this.ballFlag = !this.ballFlag;
+           this.ballFlag = !this.ballFlag;
+           console.log(this.movieDetail)
+           var goodsInfo = {id:this.movieDetail.id,count:this.selectedCount,price: this.movieDetail.wish_count,selected:true};
+           
+           this.$store.commit("addToCar",goodsInfo);
+           console.log(this.$store.state.car)
         },
         beforeEnter(el){
             el.style.transform = "translate(0,0)";
