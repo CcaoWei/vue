@@ -7,9 +7,10 @@
 
 # 命令行 git 
     1. git add .   git commit -m""  git push 
-    2.git  git diff 查看更改的代码
-    3.git  git reset --hard 重置更改的代码
-    4.git apply ~/Desktop/xiaoyan-app/flutter_sdk_modification.patch 
+    2. git  git diff 查看更改的代码
+    3. git  git reset --hard 重置更改的代码
+    4. git apply ~/Desktop/xiaoyan-app/flutter_sdk_modification.patch 
+    5. git fetch 相当于是从远程获取最新到本地，不会自动merge
 
 # vscode 有个工具可以 是可视化提交
 
@@ -68,3 +69,32 @@
     2. 组件获取state数据 是 this.$store.state.*** 数据名称
     3. 组件修改数据 需要组件调用mutations里面定义的方法  通过 this.$store.commit("方法名",参数) ！！！！此参数只能有一个 但参数类型不指定 可以是对象也可以是数组
     4. this.$state.getters.*** 获取过滤器的方法
+
+#本地存储 更新了car 要放到本地存储中 不然会刷新时 数据清空
+    1. 更新car后 把数据存储到本地的 localStorage 中   localStorage.setItem('名称',值)
+    2. 重新打开网站的时候呢  去本地存储中拿到数据 赋值给vuex中的car
+
+#注意！！！！！    父组件引入子组件中后 
+    1. 导入 import 子组件名称 from "";
+    2. export default { //抛出去的数据中要注册一下
+            components:{
+                子组件名称
+            }
+        }
+
+#子组件从父组件中拿值
+    1. 在父页面给子组件定义自定义指令  :名称="值"
+    2. 在子组件中的export中定义props:{"名称"} 
+    3. 组件上 自定义指令 直接用:value="名称"  
+    
+#对element ui的认识
+    1. 强大             
+    2. 完整          基本涵盖了日常所需要的   用了mui和mintui后发现 element ui   之后在开发会优先旋蒸elementui
+    3. 动画过渡舒服  
+
+
+#购物车结算  运用element ui
+    1. 下载安装element ui cnpm i element-ui -S
+    2. 引入elementui    import { Button } from 'element-ui'
+    3. 引入elementui css import 'element-ui/lib/theme-chalk/index.css'
+    4. Vue.component(Button.name, Button) / Vue.use(Button)

@@ -184,8 +184,7 @@ export default {
         addShopCart(){
            this.ballFlag = !this.ballFlag;
            console.log(this.movieDetail)
-           var goodsInfo = {id:this.movieDetail.id,count:this.selectedCount,price: this.movieDetail.wish_count,selected:true};
-           
+           var goodsInfo = {img:this.movieDetail.images.small,name:this.movieDetail.title,id:this.movieDetail.id,count:this.selectedCount,price: this.movieDetail.wish_count,selected:true};
            this.$store.commit("addToCar",goodsInfo);
            console.log(this.$store.state.car)
         },
