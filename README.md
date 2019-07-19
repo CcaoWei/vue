@@ -98,3 +98,23 @@
     2. 引入elementui    import { Button } from 'element-ui'
     3. 引入elementui css import 'element-ui/lib/theme-chalk/index.css'
     4. Vue.component(Button.name, Button) / Vue.use(Button)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#整理时的知识
+    1. npm set registry https://registry.npm.taobao.org/   将npm的下载源切换到国内淘宝的镜像，以提高下载时的速度和成功率
+    2. Visual Studio Code + Vetur 
