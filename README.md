@@ -118,3 +118,4 @@
 #整理时的知识
     1. npm set registry https://registry.npm.taobao.org/   将npm的下载源切换到国内淘宝的镜像，以提高下载时的速度和成功率
     2. Visual Studio Code + Vetur 
+    3. 图片压缩工具 pngquant     -----地址https://pngquant.org
